@@ -42,42 +42,45 @@ const Estadisticas = () => {
         <Progress percent={99.9} strokeColor={twoColors} />
         <Text strong>Experiencia</Text>
       </div>
-
+  
       {ultimoRegistro && (
         <Flex gap="small" wrap>
           <div style={{ textAlign: 'center' }}>
             <Progress
               type="circle"
-              percent={ultimoRegistro.temperatura ?? 0} // Utiliza valor por defecto si es null
+              percent={Math.min((ultimoRegistro.temperatura ?? 0) * 100 / 50, 100)} // Ajusta el porcentaje para la barra
               strokeColor={twoColors}
+              format={() => `${ultimoRegistro.temperatura?.toFixed(2)}°C`} // Muestra solo el número sin %
             />
-            <br></br>
+            <br />
             <Text strong>Temperatura</Text>
           </div>
-
+  
           <div style={{ textAlign: 'center' }}>
             <Progress
               type="circle"
-              percent={ultimoRegistro.humedad ?? 0} // Utiliza valor por defecto si es null
+              percent={ultimoRegistro.humedad ?? 0}
               strokeColor={conicColors}
             />
-            <br></br>
+            <br />
             <Text strong>Humedad</Text>
           </div>
-
+  
           <div style={{ textAlign: 'center' }}>
             <Progress
               type="circle"
-              percent={ultimoRegistro.vida ?? 0} // Utiliza valor por defecto si es null
+              percent={ultimoRegistro.vida ?? 0}
               strokeColor={conicColors}
             />
-            <br></br>
+            <br />
             <Text strong>Porcentaje de Vida</Text>
           </div>
         </Flex>
       )}
     </Flex>
   );
+  
+  
 };
 
 export default Estadisticas;

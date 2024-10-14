@@ -3,7 +3,9 @@ import { Button, Layout, Card, ColorPicker, theme } from 'antd';
 import 'antd/dist/reset.css';
 import Estadisticas from './Estadisticas';
 import { useAuth0 } from '@auth0/auth0-react';
-
+// Importación correcta de FontAwesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGamepad, faUtensils, faBed } from '@fortawesome/free-solid-svg-icons'; // Importar el icono correcto
 
 const { Header, Content } = Layout;
 
@@ -16,9 +18,7 @@ const Home = () => {
     };
 
     return (
-
         <Layout style={{ height: '100vh', padding: 10, justifyContent: 'center', alignItems: 'center', backgroundColor: color }}>
-
             <Header
                 style={{
                     padding: 0,
@@ -40,9 +40,6 @@ const Home = () => {
                                 >
                                     Logout
                                 </Button>
-                                {/* <div style={{ marginLeft: '10px' }}>
-                                    <ColorPicker defaultValue={color} onChange={handleColorChange} />
-                                </div> */}
                             </div>
                         )}
                     </div>
@@ -51,20 +48,19 @@ const Home = () => {
 
             <h2>BETO</h2>
             <Content style={{ textAlign: 'center' }}>
-
                 <Estadisticas />
                 <Card
                     style={{ width: 400, margin: '0 auto' }}
                     cover={<img alt="virtual pet" src="https://www.megavoxels.com/wp-content/uploads/2023/12/Pixel-Art-Penguin.png" />}
                 >
-
                     <div style={{ marginTop: 20 }}>
-                        <Button type="primary" style={{ marginRight: 10 }}>Feed</Button>
-                        <Button type="primary" style={{ marginRight: 10 }}>Play</Button>
-                        <Button type="primary">Sleep</Button>
+                        {/* Uso correcto del icono */}
+                       
+                        <Button type="primary" style={{ marginRight: 10 }}><FontAwesomeIcon icon={faUtensils} />Feed</Button>
+                        <Button type="primary" style={{ marginRight: 10 }}><FontAwesomeIcon icon={faGamepad}  />Play</Button>
+                        <Button type="primary" style={{ marginRight: 10 }}><FontAwesomeIcon icon={faBed} />Sleep</Button>
                     </div>
                 </Card>
-
             </Content>
         </Layout>
     );
