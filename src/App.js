@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Style from "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { useAuth0 } from '@auth0/auth0-react';
+import Main from "./Components/Main";
+import Menu from "./Components/Menu";
+import Home from "./Components/Home";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { isAuthenticated } = useAuth0(); // Obtener estado de autenticación
+
+    return (
+        <div className={Style.App}>
+             {/* {isAuthenticated && <Menu />}  */}
+            {isAuthenticated && <Home />}
+            
+            <Routes>
+                <Route path="/" element={<Main />} /> {/* Ruta base para Main */}
+
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
