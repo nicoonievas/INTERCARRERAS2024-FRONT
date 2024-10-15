@@ -5,7 +5,7 @@ import Estadisticas from './Estadisticas';
 import { useAuth0 } from '@auth0/auth0-react';
 // Importación correcta de FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGamepad, faUtensils, faBed } from '@fortawesome/free-solid-svg-icons'; // Importar el icono correcto
+import { faGamepad, faUtensils, faBed, faSyringe } from '@fortawesome/free-solid-svg-icons'; // Importar el icono correcto
 
 const { Header, Content } = Layout;
 
@@ -56,9 +56,10 @@ const Home = () => {
                     <div style={{ marginTop: 20 }}>
                         {/* Uso correcto del icono */}
                        
-                        <Button type="primary" style={{ marginRight: 10 }}><FontAwesomeIcon icon={faUtensils} />Feed</Button>
-                        <Button type="primary" style={{ marginRight: 10 }}><FontAwesomeIcon icon={faGamepad}  />Play</Button>
-                        <Button type="primary" style={{ marginRight: 10 }}><FontAwesomeIcon icon={faBed} />Sleep</Button>
+                        <Button type="primary" style={{ marginRight: 10 }}><FontAwesomeIcon icon={faUtensils} />Alimentar</Button>
+                        <Button type="primary" style={{ marginRight: 10 }}><FontAwesomeIcon icon={faGamepad}  />Jugar</Button>
+                        <Button type="primary" style={{ marginRight: 10 }}><FontAwesomeIcon icon={faBed} />Dormir</Button>
+                        <Button type="primary" style={{ marginRight: 10, marginTop: 10}}><FontAwesomeIcon icon={faSyringe} />Curar</Button>
                     </div>
                 </Card>
             </Content>
