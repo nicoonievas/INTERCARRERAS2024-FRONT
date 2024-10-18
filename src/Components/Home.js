@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Layout, Card, ColorPicker, theme } from 'antd';
 import 'antd/dist/reset.css';
-// import Estadisticas from './Estadisticas';
+import Estadisticas from './Estadisticas';
 import { useAuth0 } from '@auth0/auth0-react';
 // Importación correcta de FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGamepad, faUtensils, faBed, faSyringe } from '@fortawesome/free-solid-svg-icons'; // Importar el icono correcto
-import { io } from 'socket.io-client';
-const socket = io('http://localhost:5000'); 
 
 const { Header, Content } = Layout;
 
@@ -18,15 +16,6 @@ const Home = () => {
     const handleColorChange = (value) => {
         setColor(value.toHexString()); // Actualiza el color cuando se selecciona uno nuevo
     };
-
-    useEffect(() => {
-        socket.emit('message test', 'Hola, soy un mensaje desde React!');
-        
-        // Limpiar el socket al desmontar el componente
-        return () => {
-            socket.disconnect();
-        };
-    }, []);
 
     return (
         <Layout style={{ height: '100vh', padding: 10, justifyContent: 'center', alignItems: 'center', backgroundColor: color }}>
@@ -59,7 +48,7 @@ const Home = () => {
 
             <h2>BETO</h2>
             <Content style={{ textAlign: 'center' }}>
-                {/* <Estadisticas /> */}
+                <Estadisticas />
                 <Card
                     style={{ width: 400, margin: '0 auto' }}
                     cover={<img alt="virtual pet" src="https://www.megavoxels.com/wp-content/uploads/2023/12/Pixel-Art-Penguin.png" />}

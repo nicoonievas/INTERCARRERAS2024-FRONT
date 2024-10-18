@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { io } from 'socket.io-client'; 
 import { Flex, Progress, Typography } from 'antd';
 
 const { Title, Text } = Typography;
@@ -15,25 +15,20 @@ const conicColors = {
   '100%': '#ffccc7',
 };
 
+const socket = io('http://localhost:5000'); 
+
 const Estadisticas = () => {
   const [ultimoRegistro, setUltimoRegistro] = useState(null);
 
   useEffect(() => {
-    // Función para obtener el último registro
-    const obtenerUltimoRegistro = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/estados/'); // Asegúrate de que la URL sea correcta
-        setUltimoRegistro(response.data); // El último registro es devuelto directamente
-      } catch (error) {
-        console.error('Error al obtener el último registro:', error);
-      }
+
+    socket.on('nuevas_estadisticas', (data) => {
+      setUltimoRegistro(data); 
+    });
+
+    return () => {
+      socket.off('nuevas_estadisticas');
     };
-
-    const intervalo = setInterval(() => {
-      obtenerUltimoRegistro();
-    }, 1000);
-
-    return () => clearInterval(intervalo);
   }, []);
 
   return (
@@ -42,34 +37,34 @@ const Estadisticas = () => {
         <Progress percent={99.9} strokeColor={twoColors} />
         <Text strong>Experiencia</Text>
       </div>
-  
+
       {ultimoRegistro && (
         <Flex gap="small" wrap>
           <div style={{ textAlign: 'center' }}>
             <Progress
               type="circle"
-              percent={Math.min((ultimoRegistro.temperatura ?? 0) * 100 / 50, 100)} // Ajusta el porcentaje para la barra
+              percent={Math.min((ultimoRegistro.temperature ?? 0) * 100 / 50, 100)} 
               strokeColor={twoColors}
-              format={() => `${ultimoRegistro.temperatura?.toFixed(2)}°C`} // Muestra solo el número sin %
+              format={() => `${ultimoRegistro.temperature?.toFixed(2)}°C`} 
             />
             <br />
             <Text strong>Temperatura</Text>
           </div>
-  
+
           <div style={{ textAlign: 'center' }}>
             <Progress
               type="circle"
-              percent={ultimoRegistro.humedad ?? 0}
+              percent={ultimoRegistro.humidity ?? 0}
               strokeColor={conicColors}
             />
             <br />
             <Text strong>Humedad</Text>
           </div>
-  
+
           <div style={{ textAlign: 'center' }}>
             <Progress
               type="circle"
-              percent={ultimoRegistro.vida ?? 0}
+              percent={ultimoRegistro.nivelVida ?? 0}
               strokeColor={conicColors}
             />
             <br />
@@ -79,8 +74,6 @@ const Estadisticas = () => {
       )}
     </Flex>
   );
-  
-  
 };
 
 export default Estadisticas;
