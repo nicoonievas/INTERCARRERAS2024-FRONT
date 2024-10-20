@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { io } from 'socket.io-client'; 
 import { Flex, Progress, Typography } from 'antd';
 
 const { Title, Text } = Typography;
@@ -15,31 +14,33 @@ const conicColors = {
   '100%': '#ffccc7',
 };
 
-const socket = io('http://localhost:5000'); 
-
 const Estadisticas = () => {
   const [ultimoRegistro, setUltimoRegistro] = useState(null);
 
   useEffect(() => {
-
-    socket.on('nuevas_estadisticas', (data) => {
-      setUltimoRegistro(data); 
-
-    
-    });
-
+    const socket = new WebSocket('ws://localhost:2000');
+  
+    socket.onopen = () => {
+      console.log('Conexión WebSocket establecida');
+    };
+  
+    socket.onmessage = (event) => {
+      const receivedData = JSON.parse(event.data);
+      console.log('Mensaje recibido:', receivedData);
+      setUltimoRegistro(receivedData.nuevosEstados); // Ajusta esto según tu estructura de datos
+    };
+  
+    socket.onclose = () => {
+      console.log('Conexión WebSocket cerrada');
+    };
+  
     return () => {
-      socket.off('nuevas_estadisticas');
+      socket.close();
     };
   }, []);
-
+  
   return (
     <Flex vertical gap="middle">
-      {/* <div style={{ textAlign: 'center' }}>
-        <Progress percent={99.9} strokeColor={twoColors} />
-        <Text strong>Experiencia</Text>
-      </div> */}
-
       {ultimoRegistro && (
         <Flex gap="small" wrap>
           <div style={{ textAlign: 'center' }}>
