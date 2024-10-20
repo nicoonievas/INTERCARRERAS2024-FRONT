@@ -24,6 +24,8 @@ const Estadisticas = () => {
 
     socket.on('nuevas_estadisticas', (data) => {
       setUltimoRegistro(data); 
+
+    
     });
 
     return () => {
@@ -33,10 +35,10 @@ const Estadisticas = () => {
 
   return (
     <Flex vertical gap="middle">
-      <div style={{ textAlign: 'center' }}>
+      {/* <div style={{ textAlign: 'center' }}>
         <Progress percent={99.9} strokeColor={twoColors} />
         <Text strong>Experiencia</Text>
-      </div>
+      </div> */}
 
       {ultimoRegistro && (
         <Flex gap="small" wrap>
