@@ -48,7 +48,7 @@ const Home = () => {
   const handleHeal = async () => {
     try {
       const response = await axios.post("http://localhost:5000/heal", {
-        value: 10,
+        value: 25,
         timestamp: new Date(),
       });
       console.log("Curar:", response.data);
@@ -131,12 +131,6 @@ const Home = () => {
               onClick={handleFeed}
             >
               <FontAwesomeIcon icon={faUtensils} /> Alimentar
-            </Button>
-
-            {/* Botón para Jugar */}
-            <Button type="primary" style={{ marginRight: 10 }}>
-              <FontAwesomeIcon icon={faGamepad} />
-              Jugar
             </Button>
 
             {/* Botón para Dormir */}
