@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Flex, Progress, Typography } from 'antd';
-import feliz from '../pinguimag/felizfinal.bmp'; // Ajusta la ruta
-import alimentado from '../pinguimag/aguafinal.bmp'; // Ajusta la ruta
-import dormido from '../pinguimag/sueño1.bmp'; // Ajusta la ruta
+import feliz from '../pinguimag/guiño.gif'; // Ajusta la ruta
+import alimentado from '../pinguimag/comiendo.gif'; // Ajusta la ruta
+import dormido from '../pinguimag/durmiendo.gif'; // Ajusta la ruta
 import curado from '../pinguimag/1.bmp'; // Ajusta la ruta
-import incomodo from '../pinguimag/incomodomal.bmp'; // Ajusta la ruta
-import calor from '../pinguimag/calorfinal.bmp'; // Ajusta la ruta
+import incomodo from '../pinguimag/incomodo.gif'; // Ajusta la ruta
+import calor from '../pinguimag/calor.gif'; // Ajusta la ruta
 
 const { Text } = Typography;
 
