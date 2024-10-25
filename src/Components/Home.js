@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Layout, Card, ColorPicker, theme } from 'antd';
+import React, { useState } from 'react';
+import { Button, Layout, Card, theme } from 'antd';
 import 'antd/dist/reset.css';
 import Estadisticas from './Estadisticas';
 import { useAuth0 } from '@auth0/auth0-react';
 // Importación correcta de FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGamepad, faUtensils, faBed, faSyringe } from '@fortawesome/free-solid-svg-icons'; // Importar el icono correcto
+import { faUtensils, faBed, faSyringe } from '@fortawesome/free-solid-svg-icons'; // Importar el icono correcto
 import axios from 'axios';
 
 const { Header, Content } = Layout;
-let socket; 
+
 
 const Home = () => {
   const [color, setColor] = useState("#c1f5ed");
@@ -114,44 +114,25 @@ const Home = () => {
       <h2>BETO</h2>
       <Content style={{ textAlign: "center" }}>
         <Estadisticas />
-        <Card
-          style={{ width: 400, margin: "0 auto" }}
-          cover={
-            <img
-              alt="virtual pet"
-              src="https://www.megavoxels.com/wp-content/uploads/2023/12/Pixel-Art-Penguin.png"
-            />
-          }
-        >
+        <Card style={{ width: 400, margin: "0 auto" }}>
           <div style={{ marginTop: 20 }}>
             {/* Botón para Alimentar */}
-            <Button
-              type="primary"
-              style={{ marginRight: 10 }}
-              onClick={handleFeed}
-            >
+            <Button type="primary" style={{ marginRight: 10 }} onClick={handleFeed}>
               <FontAwesomeIcon icon={faUtensils} /> Alimentar
             </Button>
 
             {/* Botón para Dormir */}
-            <Button
-              type="primary"
-              style={{ marginRight: 10 }}
-              onClick={handleSleep}
-            >
+            <Button type="primary" style={{ marginRight: 10 }} onClick={handleSleep}>
               <FontAwesomeIcon icon={faBed} /> Dormir
             </Button>
 
             {/* Botón para Curar */}
-            <Button
-              type="primary"
-              style={{ marginRight: 10, marginTop: 10 }}
-              onClick={handleHeal}
-            >
+            <Button type="primary" style={{ marginRight: 10, marginTop: 10 }} onClick={handleHeal}>
               <FontAwesomeIcon icon={faSyringe} /> Curar
             </Button>
           </div>
         </Card>
+
       </Content>
     </Layout>
   );

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { HomeOutlined, MenuFoldOutlined, MenuUnfoldOutlined, LinuxOutlined, DotChartOutlined} from '@ant-design/icons';
+import { HomeOutlined, MenuFoldOutlined, MenuUnfoldOutlined, LinuxOutlined } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './Home';
-import Estadisticas from './Estadisticas';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const { Header, Sider, Content } = Layout;
