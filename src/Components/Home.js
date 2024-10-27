@@ -5,14 +5,18 @@ import Estadisticas from './Estadisticas';
 import { useAuth0 } from '@auth0/auth0-react';
 // Importación correcta de FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUtensils, faBed, faSyringe } from '@fortawesome/free-solid-svg-icons'; // Importar el icono correcto
+import { faUtensils, faBed, faSyringe, faFan, faHeartPulse } from '@fortawesome/free-solid-svg-icons'; // Importar el icono correcto
 import axios from 'axios';
+import beachImage from '../pinguimag/BEACH.png';
+import beachImageNight from '../pinguimag/BEACH_NIGHT.png';
+
 
 const { Header, Content } = Layout;
 
 
 const Home = () => {
   const [color, setColor] = useState("#c1f5ed");
+  const [fondoimg, setFondoimg] = useState("Noche");
   const { user, isAuthenticated, logout } = useAuth0();
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -57,16 +61,55 @@ const Home = () => {
     }
   };
 
+  const handleFanOn = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/vent", {
+        vent: true,
+        timestamp: new Date(),
+      });
+      console.log("Ventilador:", response.data);
+    } catch (error) {
+      console.error("Error al Ventilar:", error);
+    }
+  };
+  const handleFanOff = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/vent", {
+        vent: false,
+        timestamp: new Date(),
+      });
+      console.log("Ventilador:", response.data);
+    } catch (error) {
+      console.error("Error al apagar Ventilador:", error);
+    }
+  };
+
+  const handleRevive = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/revive", {
+        value: true,
+        timestamp: new Date(),
+      });
+      console.log("Revivir:", response.data);
+    } catch (error) {
+      console.error("Error al revivir:", error);
+    }
+  };
+
   return (
+
     <Layout
       style={{
         height: "100vh",
         padding: 10,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: color,
+        backgroundImage: `url(${fondoimg === "Día" ? beachImage : beachImageNight})`, 
+        backgroundSize: "cover", // Para que cubra todo el contenedor
+        backgroundPosition: "center",
       }}
     >
+
       <Header
         style={{
           padding: 0,
@@ -113,10 +156,17 @@ const Home = () => {
 
       <h2>BETO</h2>
       <Content style={{ textAlign: "center" }}>
-        <Estadisticas />
-        <Card style={{ width: 400, margin: "0 auto" }}>
-          <div style={{ marginTop: 20 }}>
-            {/* Botón para Alimentar */}
+        <Estadisticas onChangeFondo={setFondoimg}/>
+  
+          <div
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.8)", // Fondo blanco con 80% de opacidad
+              padding: "10px", // Espacio interno para los botones
+              borderRadius: "8px", // Bordes redondeados
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)", // Sombra para profundidad
+              marginTop: 20,
+            }}
+          >
             <Button type="primary" style={{ marginRight: 10 }} onClick={handleFeed}>
               <FontAwesomeIcon icon={faUtensils} /> Alimentar
             </Button>
@@ -131,7 +181,30 @@ const Home = () => {
               <FontAwesomeIcon icon={faSyringe} /> Curar
             </Button>
           </div>
-        </Card>
+
+          <div style={{
+              backgroundColor: "rgba(255, 255, 255, 0.8)", // Fondo blanco con 80% de opacidad
+              padding: "10px", // Espacio interno para los botones
+              borderRadius: "8px", // Bordes redondeados
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)", // Sombra para profundidad
+              marginTop: 20,
+            }}>
+            {/* Botón para Alimentar */}
+            <Button type="primary" style={{ marginRight: 10 }} onClick={handleFanOn}>
+              <FontAwesomeIcon icon={faFan} /> ON
+            </Button>
+
+            {/* Botón para Dormir */}
+            <Button type="primary" style={{ marginRight: 10 }} onClick={handleFanOff}>
+              <FontAwesomeIcon icon={faFan} /> OFF
+            </Button>
+
+            {/* Botón para Curar */}
+            <Button type="primary" style={{ marginRight: 10, marginTop: 10 }} onClick={handleRevive}>
+              <FontAwesomeIcon icon={faHeartPulse} /> Revivir
+            </Button>
+          </div>
+       
 
       </Content>
     </Layout>
