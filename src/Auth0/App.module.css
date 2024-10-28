@@ -1,7 +1,8 @@
 .Container {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra verticalmente */
+  justify-content: top; /* Centra verticalmente */
+  margin-top: 200px;
   align-items: center; /* Centra horizontalmente */
   height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
 }

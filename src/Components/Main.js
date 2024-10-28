@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import AppAuth0 from '../Auth0/AppAuth0';
+import MainImage from '../pinguimag/BEACH4.png';
 
 import Home from './Home';
 
@@ -17,7 +18,16 @@ function Main() {
     }, [isAuthenticated, navigate]);
 
     return (
-        <div>
+    
+        <div style={{
+                backgroundImage: `url(${MainImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}>
             {!isAuthenticated ? (
                 <AppAuth0 />
             ) : (

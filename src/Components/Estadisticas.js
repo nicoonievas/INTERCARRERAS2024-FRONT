@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Flex, Progress, Typography } from 'antd';
 import feliz from '../pinguimag/guiño.gif'; // Ajusta la ruta
-import alimentado from '../pinguimag/comiendo.gif'; // Ajusta la ruta
+import alimentado from '../pinguimag/comeybebe.gif'; // Ajusta la ruta
 import dormido from '../pinguimag/durmiendo.gif'; // Ajusta la ruta
-import curado from '../pinguimag/1.bmp'; // Ajusta la ruta
+import curado from '../pinguimag/activo.gif'; // Ajusta la ruta
 import incomodo from '../pinguimag/incomodo.gif'; // Ajusta la ruta
 import calor from '../pinguimag/calor.gif'; // Ajusta la ruta
 import muerte from '../pinguimag/muerte.gif'; // Ajusta la ruta
+import activo from '../pinguimag/activo.gif'; // Ajusta la ruta
+import cansado from '../pinguimag/cansado.gif'; // Ajusta la ruta
+import triste from '../pinguimag/triste.gif'; // Ajusta la ruta
 
 const { Text } = Typography;
 
@@ -34,6 +37,9 @@ const Estadisticas = ({ onChangeFondo }) => {
     incomodo,
     calor,
     muerte,
+    activo,
+    cansado,
+    triste,
   };
 
   const estadosId = new Map([
@@ -51,11 +57,11 @@ const Estadisticas = ({ onChangeFondo }) => {
   const obtenerImagenEstado = (estado) => {
     switch (estado) {
       case 1: // ESTADO_ACTIVO
-        return imagenes.feliz;
+        return imagenes.activo;
       case 2: // ESTADO_DORMIDO
         return imagenes.dormido;
       case 3: // ESTADO_ENFERMO
-        return imagenes.curado;
+        return imagenes.triste;
       case 4: // ESTADO_CANSADO
         return imagenes.incomodo;
       case 5: // ESTADO_FELIZ
@@ -146,8 +152,8 @@ const Estadisticas = ({ onChangeFondo }) => {
             <br />
             <br />
             <h2>{estadoFront ?? 0}</h2>
-            <h3>{fondoimg}</h3>
-            
+            {/* <h3>{fondoimg}</h3> */}
+            <br />
             <br />
             <Text strong style={{ backgroundColor: 'white' }}>Estado</Text>
           </div>
@@ -159,7 +165,7 @@ const Estadisticas = ({ onChangeFondo }) => {
         </Flex>
       )}
       {/* Imagen de la mascota virtual */}
-      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '20px', alignItems: 'center', marginTop: 120, marginBottom: 100 }}>
         <img
           alt="virtual pet"
           src={ultimoRegistro ? obtenerImagenEstado(ultimoRegistro.estado) : imagenes.feliz} // Cambia la imagen según el estado

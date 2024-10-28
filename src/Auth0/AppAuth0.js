@@ -9,7 +9,7 @@ function AppAuth0() {
     <div className={Style.Container}>
       {!isAuthenticated ? (
         <div className={Style.LoginContainer}> {/* Contenedor para centrar el botón */}
-          <img src="https://www.megavoxels.com/wp-content/uploads/2023/12/Pixel-Art-Penguin.png" alt="Imagen" className={Style.LoginImage} /> {/* Cambia URL_DE_TU_IMAGEN por la URL de tu imagen */}
+          
           <Button type="primary" className={Style.BotonLogin} onClick={() => loginWithRedirect()}>
             Log In
           </Button>
