@@ -7,8 +7,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faBed, faSyringe, faFan, faHeartPulse } from '@fortawesome/free-solid-svg-icons'; // Importar el icono correcto
 import axios from 'axios';
-import beachImage from '../pinguimag/BEACH.png';
-import beachImageNight from '../pinguimag/BEACH_NIGHT.png';
+import beachImage from '../pinguimag/BEACH3.png';
+import beachImageNight from '../pinguimag/BEACH2.png';
 
 
 const { Header, Content } = Layout;

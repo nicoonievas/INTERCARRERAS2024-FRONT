@@ -119,7 +119,7 @@ const Estadisticas = ({ onChangeFondo }) => {
               format={() => `${ultimoRegistro.temperature?.toFixed(2)}°C`}
             />
             <br />
-            <Text strong style={{ backgroundColor: 'white' }}>Temperatura</Text>
+            <Text strong >Temperatura</Text>
           </div>
 
           <div style={{ textAlign: 'center' }}>
@@ -129,7 +129,7 @@ const Estadisticas = ({ onChangeFondo }) => {
               strokeColor={conicColors}
             />
             <br />
-            <Text strong style={{ backgroundColor: 'white' }}>Humedad</Text>
+            <Text strong >Humedad</Text>
           </div>
 
           <div style={{ textAlign: 'center' }}>
@@ -139,7 +139,7 @@ const Estadisticas = ({ onChangeFondo }) => {
               strokeColor={conicColors}
             />
             <br />
-            <Text strong style={{ backgroundColor: 'white' }}>Porcentaje de Vida</Text>
+            <Text strong >Porcentaje de Vida</Text>
           </div>
 
           <div style={{ textAlign: 'center' }}>
@@ -155,7 +155,7 @@ const Estadisticas = ({ onChangeFondo }) => {
             {/* <h3>{fondoimg}</h3> */}
             <br />
             <br />
-            <Text strong style={{ backgroundColor: 'white' }}>Estado</Text>
+            <Text strong >Estado</Text>
           </div>
 
           <div style={{ textAlign: 'center' }}>
@@ -165,11 +165,11 @@ const Estadisticas = ({ onChangeFondo }) => {
         </Flex>
       )}
       {/* Imagen de la mascota virtual */}
-      <div style={{ textAlign: 'center', marginBottom: '20px', alignItems: 'center', marginTop: 120, marginBottom: 100 }}>
+      <div style={{ textAlign: 'center', marginBottom: '20px', alignItems: 'center', marginTop: 50, marginBottom: 30 }}>
         <img
           alt="virtual pet"
           src={ultimoRegistro ? obtenerImagenEstado(ultimoRegistro.estado) : imagenes.feliz} // Cambia la imagen según el estado
-          style={{ width: '300px', borderRadius: '65px' }} // Ajusta el tamaño y estilo según sea necesario
+          style={{ width: '250px', height: '150px', borderRadius: '50px' }} // Ajusta el tamaño y estilo según sea necesario
         />
       </div>
     </Flex>
