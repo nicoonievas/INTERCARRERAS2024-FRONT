@@ -165,7 +165,7 @@ const Estadisticas = ({ onChangeFondo }) => {
         </Flex>
       )}
       {/* Imagen de la mascota virtual */}
-      <div style={{ textAlign: 'center', marginBottom: '20px', alignItems: 'center', marginTop: 50, marginBottom: 30 }}>
+      <div style={{ textAlign: 'center', marginBottom: '20px', alignItems: 'center', marginTop: 30, marginBottom: 20 }}>
         <img
           alt="virtual pet"
           src={ultimoRegistro ? obtenerImagenEstado(ultimoRegistro.estado) : imagenes.feliz} // Cambia la imagen según el estado
